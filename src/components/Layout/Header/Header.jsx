@@ -3,6 +3,8 @@ import { Button, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay,
 import { Link } from "react-router-dom"
 import { ColorModeSwitcher } from '../../../ColorModeSwitcher'
 import { RiDashboardFill, RiLogoutBoxLine, RiMenu5Fill } from 'react-icons/ri'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../../redux/actions/user'
 
 const LinkButton = ({ url = "/", title = "Home", onClose }) => (
     <Link onClick={onClose} to={url}>
@@ -10,19 +12,15 @@ const LinkButton = ({ url = "/", title = "Home", onClose }) => (
     </Link>
 )
 
-const Header = () => {
+const Header = ({isAuthenticated=false, user}) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const isAuthenticated = true;
-
-    const user = {
-        role: 'admin',
-    }
+    const dispatch = useDispatch();
 
     const logoutHandler =()=>{
-        console.log("Logout");
         onClose();
+        dispatch(logout())
     }
     return (
         <>

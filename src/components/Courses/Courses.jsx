@@ -1,8 +1,13 @@
 import { Button, Container, Heading, HStack, Image, Input, Stack, Text, VStack } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { toast } from 'react-hot-toast'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { getAllCourses } from '../../redux/actions/course'
+import { addToPlaylist } from '../../redux/actions/profile'
+import {loadUser} from "../../redux/actions/user"
 
-const Course = ({ views, title, imageSrc, id, addToPlatlistHandler, creator, description, lectureCount, }) => {
+const Course = ({ views, title, imageSrc, id, addToPlatlistHandler, creator, description, lectureCount, loading }) => {
     return (
         <VStack className='course' alignItems={["center", "flex-start"]}>
             <Image src={imageSrc} boxSize="60" objectFit={"contain"} />
@@ -21,24 +26,24 @@ const Course = ({ views, title, imageSrc, id, addToPlatlistHandler, creator, des
                 <Text fontFamily={"body"} textTransform="uppercase" children={creator} />
             </HStack>
 
-            <Heading 
-            textAlign={"center"} 
-            size="xs" 
-            children={`Lectures - ${lectureCount}`} 
-            textTransform="uppercase"
+            <Heading
+                textAlign={"center"}
+                size="xs"
+                children={`Lectures - ${lectureCount}`}
+                textTransform="uppercase"
             />
 
-            <Heading 
-            size="xs" 
-            children={`Views - ${views}`} 
-            textTransform="uppercase"
+            <Heading
+                size="xs"
+                children={`Views - ${views}`}
+                textTransform="uppercase"
             />
 
             <Stack direction={["column", "row"]} alignItems="center">
                 <Link to={`/course/${id}`}>
                     <Button colorScheme={"yellow"}>Watch Now</Button>
                 </Link>
-                <Button variant={"ghost"} colorScheme={"yellow"} onClick={()=>addToPlatlistHandler(id)}>Add to playlist</Button>
+                <Button isLoading={loading} variant={"ghost"} colorScheme={"yellow"} onClick={() => addToPlatlistHandler(id)}>Add to playlist</Button>
             </Stack>
 
         </VStack>
@@ -47,11 +52,13 @@ const Course = ({ views, title, imageSrc, id, addToPlatlistHandler, creator, des
 
 const Courses = () => {
 
-    const [keyword, setKeyword] = useState("")
-    const [category, setCategory] = useState("")
+    const [keyword, setKeyword] = useState("");
+    const [category, setCategory] = useState("");
+    const dispatch = useDispatch();
 
-    const addToPlatlistHandler = () => {
-        console.log("Added to playlist");
+    const addToPlatlistHandler = async(courseId) => {
+        await dispatch(addToPlaylist(courseId));
+        dispatch(loadUser())
     }
 
     const catagories = [
@@ -61,7 +68,24 @@ const Courses = () => {
         "App Development",
         "Data Science",
         "Game Development"
-    ]
+    ];
+
+    const { loading, courses, error, message } = useSelector(state => state.course)
+
+    useEffect(() => {
+        dispatch(getAllCourses(category, keyword));
+
+        if (error) {
+            toast.error(error);
+            dispatch({ type: "clearError" })
+        }
+
+        if (message) {
+            toast.success(message);
+            dispatch({ type: "clearMessage" })
+        }
+    }, [category, keyword, dispatch, error, message]);
+
 
     return (
         <Container minH={"95vh"} maxW="container.lg" paddingY={"8"}>
@@ -95,16 +119,22 @@ const Courses = () => {
                 alignItems={["center", "flex-start"]}
             >
 
-                <Course
-                    title={"sample"}
-                    description={"sample"}
-                    views={23}
-                    imageSrc={"https://i.picsum.photos/id/1084/536/354.jpg?grayscale&hmac=Ux7nzg19e1q35mlUVZjhCLxqkR30cC-CarVg-nlIf60"}
-                    id={"sample"}
-                    creator={"sample boy"}
-                    lectureCount={2}
-                    addToPlatlistHandler={addToPlatlistHandler}
-                />
+                {
+                    courses.length > 0 ? courses.map((item) => (
+                        <Course
+                            key={item._id}
+                            title={item.title}
+                            description={item.description}
+                            views={item.views}
+                            imageSrc={item.poster.url}
+                            id={item._id}
+                            creator={item.createdBy}
+                            lectureCount={item.numOfVideos}
+                            addToPlatlistHandler={addToPlatlistHandler}
+                            loading={loading}
+                        />
+                    )) : <Heading mt="4" children="Courses Not Found" />
+                }
             </Stack>
         </Container>
     )
