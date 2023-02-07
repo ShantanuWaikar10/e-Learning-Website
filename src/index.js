@@ -1,8 +1,3 @@
-// 48 videos completed
-
-// 15th video Months Problem---(solved by another method)
-// 48th video 31.30 minute cancel subscription not working
-
 import { ColorModeScript } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';

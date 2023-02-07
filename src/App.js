@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
@@ -33,9 +32,9 @@ import Loader from './components/Layout/Loader/Loader';
 
 function App() {
 
-  // window.addEventListener("contextmenu",(e)=>{
-  //   e.preventDefault()
-  // });
+  window.addEventListener("contextmenu",(e)=>{
+    e.preventDefault()
+  });
 
   const { isAuthenticated, user, message, error, loading } = useSelector(state => state.user);
 
@@ -64,7 +63,15 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/courses" element={<Courses />} />
-              <Route path="/course/:id" element={<CoursePage />} />
+              
+              <Route
+                path="/course/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <CoursePage user={user} />
+                  </ProtectedRoute>
+                }
+              />
 
               <Route path="/contact" element={<Contact />} />
               <Route path="/request" element={<Request />} />
@@ -110,7 +117,7 @@ function App() {
               } />
               <Route path="/subscribe" element={
                 <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Subscribe user={user}/>
+                  <Subscribe user={user} />
                 </ProtectedRoute>
               } />
               <Route path="*" element={<NotFound />} />
