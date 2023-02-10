@@ -1,5 +1,5 @@
 import { Box, Button, Container, FormLabel, Heading, Input, VStack } from '@chakra-ui/react'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import { Link } from 'react-router-dom'
 import React, { useState } from 'react'
 import { login } from '../../redux/actions/user';
@@ -10,7 +10,6 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
     const dispatch = useDispatch();
-    const {loading} = useSelector(state=>state.profile)
 
     const submitHandler=(e)=>{
         e.preventDefault();
@@ -38,7 +37,7 @@ const Login = () => {
                             </Button>
                         </Link>
                     </Box>
-                    <Button isLoading={loading} my={"4"} colorScheme="yellow" type='submit'>Login</Button>
+                    <Button my={"4"} colorScheme="yellow" type='submit'>Login</Button>
                     <Box my={"4"}>
                         New User? <Link to={"/register"}>
                             <Button colorScheme={"yellow"} variant="link">
