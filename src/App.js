@@ -32,7 +32,7 @@ import Loader from './components/Layout/Loader/Loader';
 
 function App() {
 
-  window.addEventListener("contextmenu",(e)=>{
+  window.addEventListener("contextmenu", (e) => {
     e.preventDefault()
   });
 
@@ -56,14 +56,16 @@ function App() {
 
   return (
     <Router>
-      {
-        
-          <>
-            <Header isAuthenticated={isAuthenticated} user={user} />
-            <Routes>
-              <Route path="/" element={<Home />} />
+
+      <Header isAuthenticated={isAuthenticated} user={user} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {
+          loading ? (<Loader />) : (
+            <>
+
               <Route path="/courses" element={<Courses />} />
-              
+
               <Route
                 path="/course/:id"
                 element={
@@ -139,12 +141,14 @@ function App() {
               <Route path="/admin/users" element={<ProtectedRoute adminRoute={true} isAuthenticated={isAuthenticated} isAdmin={user && user.role === 'admin'}>
                 <Users />
               </ProtectedRoute>} />
-            </Routes>
-            <Footer />
-            <Toaster />
-          </>
-        
-      }
+            </>
+          )
+        }
+      </Routes>
+      <Footer />
+      <Toaster />
+
+
     </Router>
   );
 }
