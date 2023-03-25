@@ -1,7 +1,6 @@
 import { Avatar, Box, Button, Container, Heading, HStack, Stack, Text, VStack } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import React from 'react'
-import introVideo from '../../assets/videos/introVideo.mp4'
 import { RiSecurePaymentFill } from 'react-icons/ri';
 import termsAndCondition from "../../assets/docs/termsAndCondition"
 
@@ -32,7 +31,7 @@ const VideoPlayer = () => (
             controlsList='nodownload nofullscreen noremoteplayback'
             disableRemotePlayback
             disablePictureInPicture
-            src={introVideo}>
+            src="https://res.cloudinary.com/drrl6fxgi/video/upload/v1675687285/f1zayeqrvsysheoakilp.mp4">
         </video>
     </Box>
 )
