@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { CgGoogle, CgYoutube } from "react-icons/cg"
 import { SiCoursera, SiUdemy } from "react-icons/si"
 import { DiAws } from "react-icons/di"
-import introVideo from '../../assets/videos/introVideo.mp4'
+// import introVideo from '../../assets/videos/introVideo.mp4'
 
 import vg from "../../assets/images/bg.jpg"
 import "../Home/home.css"
@@ -59,10 +59,10 @@ const Home = () => {
                 controlsList='nodownload nofullscreen noremoteplayback' 
                 disableRemotePlayback
                 disablePictureInPicture
-                src={introVideo}>
+                src="https://res.cloudinary.com/drrl6fxgi/video/upload/v1675687285/f1zayeqrvsysheoakilp.mp4">
                 </video>
             </div>
-        </section>
+        </section> 
     )
 }
 
