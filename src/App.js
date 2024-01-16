@@ -57,7 +57,7 @@ function App() {
   return (
     <Router>
       {
-        //loading ? (<Loader />) : (
+        loading ? (<Loader />) : (
           <>
             <Header isAuthenticated={isAuthenticated} user={user} />
             <Routes>
@@ -143,7 +143,7 @@ function App() {
             <Footer />
             <Toaster />
           </>
-       // )
+        )
       }
     </Router>
   );
