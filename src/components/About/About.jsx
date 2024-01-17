@@ -31,7 +31,7 @@ const VideoPlayer = () => (
             controlsList='nodownload nofullscreen noremoteplayback'
             disableRemotePlayback
             disablePictureInPicture
-            src="https://res.cloudinary.com/drrl6fxgi/video/upload/v1705472039/spvsd0t4ljbgn0kblwcr.mp4">
+            src="https://res.cloudinary.com/drrl6fxgi/video/upload/v1705489368/l2aktgutyunupqftl0ll.mp4">
         </video>
     </Box>
 )
