@@ -59,7 +59,7 @@ const Home = () => {
                 controlsList='nodownload nofullscreen noremoteplayback' 
                 disableRemotePlayback
                 disablePictureInPicture
-                src="https://res.cloudinary.com/drrl6fxgi/video/upload/q_10/v1675687285/f1zayeqrvsysheoakilp.mp4">
+                src="https://res.cloudinary.com/drrl6fxgi/video/upload/v1705472039/spvsd0t4ljbgn0kblwcr.mp4">
                 </video>
             </div>
         </section> 
