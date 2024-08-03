@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { CgGoogle, CgYoutube } from "react-icons/cg"
 import { SiCoursera, SiUdemy } from "react-icons/si"
 import { DiAws } from "react-icons/di"
+import learning_gif from "../../assets/images/learning_gif.gif";
 // import introVideo from '../../assets/videos/introVideo.mp4'
 
 import vg from "../../assets/images/bg.jpg"
@@ -54,13 +55,7 @@ const Home = () => {
             </Box>
 
             <div className="container2">
-                <video  
-                controls 
-                controlsList='nodownload nofullscreen noremoteplayback' 
-                disableRemotePlayback
-                disablePictureInPicture
-                src="https://res.cloudinary.com/drrl6fxgi/video/upload/v1705938842/txv84o162d5hoe1ybzjm.mp4">
-                </video>
+                <img src={learning_gif} alt="loading..." />
             </div>
         </section> 
     )
