@@ -7,7 +7,7 @@ import termsAndCondition from "../../assets/docs/termsAndCondition"
 const Founder = () => (
     <Stack direction={["column", "row"]} spacing={["4", "16"]} padding={'8'}>
         <VStack>
-            <Avatar src='https://media.licdn.com/dms/image/C4D03AQFCsVVoEt33GA/profile-displayphoto-shrink_800_800/0/1627226325121?e=1678924800&v=beta&t=snkiUZ1xV0PzuohD9bFH25oV-aoC2eFMbbEbXZpaBbU' boxSize={["40", "48"]} />
+            <Avatar src='https://res.cloudinary.com/drrl6fxgi/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1675254376/jpmceo34wpxpu87pikfe.jpg' boxSize={["40", "48"]} />
             <Text children="Co-Founder" opacity={0.7} />
         </VStack>
 
@@ -31,7 +31,7 @@ const VideoPlayer = () => (
             controlsList='nodownload nofullscreen noremoteplayback'
             disableRemotePlayback
             disablePictureInPicture
-            src="https://res.cloudinary.com/drrl6fxgi/video/upload/v1705489368/l2aktgutyunupqftl0ll.mp4">
+            src="https://res.cloudinary.com/drrl6fxgi/video/upload/v1705938842/txv84o162d5hoe1ybzjm.mp4">
         </video>
     </Box>
 )
